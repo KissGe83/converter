@@ -15,7 +15,7 @@ Option A)
 You need to call the server on port 8080 -as standard- in the following way:
 http://<IP>:8080/convert/VALUE/INPUT-FORMAT/OUTPUT-FORMAT
 
-The <input-format> and <output-format> can be:
+The INPUT-FORMAT and OUTPUT-FORMAT can be:
 - dec
 - bin
 - hex
