@@ -22,9 +22,9 @@ The INPUT-FORMAT and OUTPUT-FORMAT can be:
 
 Examples: 
 
-http://10.1.2.100:8080/convert/1010/bin/dec
+http://YOURIP:8080/convert/1010/bin/dec
 
-http://10.1.2.100:8080/convert/10/dec/bin
+http://YOURIP:8080/convert/10/dec/bin
 
 
 Just so you know, you will get back the result in the required format.You can convert in any combination of the above formats.
