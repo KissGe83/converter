@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Converter Application</title>
+</head>
+<body>
+    <h1>Decimal, Binary, Hexadecimal Converter</h1>
+    <form action="/convert" method="POST">
+        <label for="value">Value:</label>
+        <input type="text" id="value" name="value" required><br><br>
+
+        <label for="input_format">Input Format:</label>
+        <select id="input_format" name="input_format" required>
+            <option value="dec">Decimal</option>
+            <option value="bin">Binary</option>
+            <option value="hex">Hexadecimal</option>
+        </select><br><br>
+
+        <label for="output_format">Output Format:</label>
+        <select id="output_format" name="output_format" required>
+            <option value="dec">Decimal</option>
+            <option value="bin">Binary</option>
+            <option value="hex">Hexadecimal</option>
+        </select><br><br>
+
+        <button type="submit">Convert</button>
+    </form>
+
+    {% if result %}
+    <h2>Result: {{ result }}</h2>
+    {% endif %}
+
+    {% if error %}
+    <h2 style="color: red;">Error: {{ error }}</h2>
+    {% endif %}
+</body>
+</html>
