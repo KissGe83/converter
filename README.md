@@ -9,6 +9,7 @@ The application is using Flask (micro web framework).
 Basically, the converter is using port 8080 to avoid conflicts, but you can choose any other port for your purpose, please adjust the port number in the relevant section if this is your willing.
 
 USAGE:
+
 There are two methods how you can use this simple calculator.
 Option A)
 You need to call the server on port 8080 -as standard- in the following way:
