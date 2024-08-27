@@ -21,6 +21,7 @@ The INPUT-FORMAT and OUTPUT-FORMAT can be:
 - hex
 
 Examples: 
+
 http://10.1.2.100:8080/convert/1010/bin/dec
 
 http://10.1.2.100:8080/convert/10/dec/bin
