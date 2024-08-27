@@ -9,6 +9,7 @@ The application is using Flask (micro web framework).
 Basically, the converter is using port 8080 to avoid conflicts, but you can choose any other port for your purpose, please adjust the port number in the relevant section if this is your willing.
 
 The application is designed to run in a docker container with Kubernetes.
+
 The heartbeat of the application can called:
 http://YOURIP:8080/health
 
