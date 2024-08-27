@@ -2,7 +2,7 @@
 Decimal, Binary, Hexadecimal Converter
 This application is a simple converter which can convert from/to: DEC, BIN, HEX
 
-This application aims to complete the homework assigned by Platomics GmbH.The pack is available in docker which can be deployed from:
+This solution aims to complete the homework assigned by Platomics GmbH.The pack is available in docker which can be deployed from:
 ghcr.io/kissge83/converter:latest
 
 The application is using Flask (micro web framework).
