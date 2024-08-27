@@ -13,7 +13,7 @@ USAGE:
 There are two methods how you can use this simple calculator.
 Option A)
 You need to call the server on port 8080 -as standard- in the following way:
-http://<IP>:8080/convert/<value>/<input-format>/<output-format>
+http://<IP>:8080/convert/VALUE/INPUT-FORMAT/OUTPUT-FORMAT
 
 The <input-format> and <output-format> can be:
 - dec
@@ -22,7 +22,9 @@ The <input-format> and <output-format> can be:
 
 Examples: 
 http://10.1.2.100:8080/convert/1010/bin/dec
+
 http://10.1.2.100:8080/convert/10/dec/bin
+
 
 Just so you know, you will get back the result in the required format.You can convert in any combination of the above formats.
 
