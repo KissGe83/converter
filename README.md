@@ -1,6 +1,5 @@
 # converter
 Decimal, Binary, Hexadecimal Converter
-
 This application is a simple converter which can convert from/to: DEC, BIN, HEX
 
 This application aims to complete the homework assigned by Platomics GmbH.The pack is available in docker which can be deployed from:
