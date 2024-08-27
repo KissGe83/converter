@@ -17,6 +17,7 @@ http://YOURIP:8080/health
 USAGE:
 
 There are two methods how you can use this simple calculator.
+
 Option A)
 You need to call the server on port 8080 -as standard- in the following way:
 http://<IP>:8080/convert/VALUE/INPUT-FORMAT/OUTPUT-FORMAT
