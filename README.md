@@ -30,5 +30,7 @@ http://10.1.2.100:8080/convert/10/dec/bin
 Just so you know, you will get back the result in the required format.You can convert in any combination of the above formats.
 
 Option B)
+
 There is a simple webpage as well where you can use the converter: 
+
 http://10.1.2.100:8080
