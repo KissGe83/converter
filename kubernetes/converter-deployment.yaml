@@ -15,6 +15,11 @@ spec:
       containers:
       - name: converter
         image: ghcr.io/kissge83/converter:latest
+        resources:
+          requests:
+            cpu: 100m
+          limits:
+            cpu: 500m
         ports:
         - containerPort: 8080
         livenessProbe:
