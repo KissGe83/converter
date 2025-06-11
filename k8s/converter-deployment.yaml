@@ -34,4 +34,10 @@ spec:
             port: 8080
           initialDelaySeconds: 5
           periodSeconds: 10
-
+        securityContext:
+          runAsUser: 1001
+          runAsGroup: 1001
+          allowPrivilegeEscalation: false
+          readOnlyRootFilesystem: false
+      imagePullSecrets:
+        - name: ghcr-secret

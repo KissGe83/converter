@@ -1,0 +1,90 @@
+- name: Setup Kubernetes Flask + Redis App
+  hosts: localhost
+  become: true
+  vars:
+    microk8s_channel: 1.29/stable
+    app_image_name: ghcr.io/kissge83/converter:latest
+  tasks:
+    - name: Update apt cache
+      apt:
+        update_cache: yes
+
+    - name: Check DOCKER-CE Installation
+      command: which docker
+      register: docker_check
+      ignore_errors: true
+
+    - name: Docker INSTALL
+      apt:
+        name:
+          - ca-certificates
+          - curl
+          - gnupg
+          - lsb-release
+        update_cache: yes
+      when: docker_check.rc != 0
+
+    - name: Docker GPG KEY + REPO Setup
+      block:
+        - name: Docker KEY download...
+          get_url:
+            url: https://download.docker.com/linux/ubuntu/gpg
+            dest: /etc/apt/keyrings/docker.asc
+            mode: '0644'
+
+        - name: Docker repository SETUP
+          copy:
+            dest: /etc/apt/sources.list.d/docker.list
+            content: "deb [arch=amd64 signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu {{ ansible_distribution_release }} stable"
+
+        - name: Docker INSTALL
+          apt:
+            name:
+              - docker-ce
+              - docker-ce-cli
+              - containerd.io
+            update_cache: yes
+      when: docker_check.rc != 0
+
+    - name: Microk8s installed - check
+      command: which microk8s
+      register: microk8s_check
+      ignore_errors: true
+
+    - name: MicroK8s INSTALL
+      snap:
+        name: microk8s
+        classic: yes
+        state: present
+      when: microk8s_check.rc != 0
+
+    - name: Add current user to microk8s group
+      user:
+        name: "{{ ansible_user_id }}"
+        groups: microk8s
+        append: yes
+
+    - name: Wait for MicroK8s to be ready
+      shell: microk8s status --wait-ready
+
+    - name: Enable MicroK8s addons
+      shell: microk8s enable dns storage ingress helm3 metrics-server
+
+    - name: Create image pull secret for GHCR
+      shell: |
+        microk8s kubectl create secret docker-registry ghcr-secret \
+          --docker-server=https://ghcr.io \
+          --docker-username=${GITHUB_USER} \
+          --docker-password=${GHCR_TOKEN} \
+          --docker-email=dev@example.com || true
+      environment:
+        GITHUB_USER: "{{ lookup('env', 'GHCR_USER') }}"
+        GHCR_TOKEN: "{{ lookup('env', 'GHCR_TOKEN') }}"
+
+    - name: Apply Kubernetes configs
+      shell: microk8s kubectl apply -f {{ item }}
+      loop:
+        - k8s/converter-deployment.yaml
+        - k8s/converter-service.yaml
+        - k8s/converter-hpa.yaml
+
