@@ -3,10 +3,10 @@ kind: Service
 metadata:
   name: converter-service
 spec:
-  type: LoadBalancer
+  type: NodePort
   selector:
     app: converter
   ports:
   - port: 8080
     targetPort: 8080
-
+    nodePort: 30001
