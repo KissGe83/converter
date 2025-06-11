@@ -81,10 +81,17 @@
         GITHUB_USER: "{{ lookup('env', 'GHCR_USER') }}"
         GHCR_TOKEN: "{{ lookup('env', 'GHCR_TOKEN') }}"
 
+    - name: Add converter.localhost to /etc/hosts if not present
+      lineinfile:
+        path: /etc/hosts
+        line: "127.0.0.1 converter.localhost"
+        state: present
+
+
     - name: Apply Kubernetes configs
       shell: microk8s kubectl apply -f {{ item }}
       loop:
         - k8s/converter-deployment.yaml
         - k8s/converter-service.yaml
         - k8s/converter-hpa.yaml
-
+        - k8s/converter-ingress.yaml
